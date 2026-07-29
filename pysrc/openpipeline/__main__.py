@@ -10,6 +10,6 @@ if not config_data:
     sys.stderr.write('Missing Project Data.')
 
 sandbox_proj=context.ProjContext(config_data)
-sys.stdout.write(f'OpenPipeline Interface {sandbox_proj.version}\nProject: {sandbox_proj.name}')
+sys.stdout.write(f'OpenPipeline Interface {sandbox_proj.version}\nProject: {sandbox_proj.name}\n')
 
 
