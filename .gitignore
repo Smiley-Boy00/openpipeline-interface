@@ -1,0 +1,81 @@
+# -----------------------------
+# Python
+# -----------------------------
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python packaging/build output
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test / coverage cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checker / linter cache
+.mypy_cache/
+.ruff_cache/
+
+
+# -----------------------------
+# IDE / Editor
+# -----------------------------
+
+.vscode/
+.idea/
+
+*.code-workspace
+
+
+# -----------------------------
+# OS generated files
+# -----------------------------
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+
+# -----------------------------
+# Logs / temporary files
+# -----------------------------
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+
+
+# -----------------------------
+# Local environment/config
+# -----------------------------
+
+.env
+.env.*
+!.env.example
+
+
+# -----------------------------
+# OpenPipeline local/generated data
+# -----------------------------
+
+# Add directories here later if OPI creates
+# machine-specific cache or generated files.
+.cache/
+temp/
+tmp/
