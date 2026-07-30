@@ -11,8 +11,10 @@ class ProjContext():
         self._proj_data = proj_data
         self.name = self._proj_data['project_name']
         self.version = self._proj_data['pipeline_version']
-        self.project_root = self.get_project_root()
-        self.directories = self._proj_data['directories']
+        self.root = self.get_project_root()
+
+        self.assets = self.root / self._proj_data['directories']['assets']
+        self.export = self.root / self._proj_data['directories']['export']
 
     def get_project_root(self) -> Path:
         system = platform.system().lower() # find OS, keep it lowercase
