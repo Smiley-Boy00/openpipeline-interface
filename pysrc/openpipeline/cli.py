@@ -8,12 +8,16 @@ def main():
                                      description='OpenPipeline Interface')
 
     parser.add_argument('command', nargs='?', default='info', choices=['info', 'test-assets'])
+    
+    parser.add_argument('--project', '-p',
+                        default='opi_sandbox',
+                        help='Project directory name')
 
     args = parser.parse_args() # retrieve chosen command
     command_to_use = args.command
 
     # load project config
-    config_data = config.load_config()
+    config_data = config.load_config(args.project)
     if not config_data:
         parser.error('Missing Project Data.')
 

@@ -3,14 +3,14 @@ import os
 
 
 # data handling related functions
-def load_config() -> dict:
+def load_config(project_name: str) -> dict:
     ''' Loads a path data (dictionary) from a json file. '''
 
     # find current working directory
     if 'pysrc' in os.path.dirname(os.getcwd()):
-        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'data')
+        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'projects', project_name)
     else:
-        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'pysrc', 'data')
+        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'pysrc', 'projects', project_name)
     config_file = os.path.join(proj_path, 'project.json')
 
     with open(config_file) as file:
