@@ -20,9 +20,20 @@ def main():
     sandbox = ProjContext(config_data)
 
     if command_to_use == 'info':
-        print(f'OpenPipeline Interface {sandbox.version}')
-        print(f'Project: {sandbox.name}')
-        print(f'Root: {sandbox.root}')
+        show_project_info(sandbox)
 
     if command_to_use == 'test-assets':
-        print('run text file')
+        tester_run(sandbox)
+
+def show_project_info(project:ProjContext):
+    print(f'OpenPipeline Interface {project.version}')
+    print(f'Project: {project.name}')
+    print(f'Root: {project.root}')
+
+def tester_run(project:ProjContext):
+    print('run text file')
+    if project.assets:
+        test_file = project.assets / 'my_sandbox'
+
+    with test_file.open() as file:
+        print(file.read())
