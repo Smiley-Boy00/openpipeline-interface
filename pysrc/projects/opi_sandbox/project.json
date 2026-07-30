@@ -2,8 +2,8 @@
     "project_name": "OPI Sandbox",
     "pipeline_version": "0.2.0",
     "project_root": {
-        "unix": "~/Developer/OpenPipeline/pysrc",
-        "windows": "E:/Developer/OpenPipeline/pysrc"},
+        "unix": "~/Developer/OpenPipeline/pysrc/projects/opi_sandbox",
+        "windows": "E:/Developer/OpenPipeline/pysrc/projects/opi_sandbox"},
 
     "directories": {
         "assets": "assets",
