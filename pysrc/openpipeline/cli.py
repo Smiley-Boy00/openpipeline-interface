@@ -1,4 +1,5 @@
 import argparse
+import subprocess
 
 from .core import config
 from .core.context import ProjContext
@@ -37,7 +38,7 @@ def show_project_info(project:ProjContext):
 def tester_run(project:ProjContext):
     print('run text file')
     if project.assets:
-        test_file = project.assets / 'my_sandbox'
+        test_file = project.assets / 'my_sandbox.txt'
 
     with test_file.open() as file:
         print(file.read())

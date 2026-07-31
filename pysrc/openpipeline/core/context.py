@@ -6,7 +6,7 @@ from pathlib import Path
 class ProjContext():
     def __init__(self, proj_data:dict):
         ''' 
-        Args: system: str - the system type (Unix or Windows) to use for the project root path.
+        Args: system: str - the system type [unix or windows] to use for the project root path.
         '''
         self._proj_data = proj_data
         self.name = self._proj_data['project_name']
