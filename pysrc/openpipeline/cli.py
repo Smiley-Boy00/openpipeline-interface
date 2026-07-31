@@ -36,7 +36,6 @@ def show_project_info(project:ProjContext):
     print(f'Root: {project.root}')
 
 def tester_run(project:ProjContext):
-    print('run text file')
     if project.assets:
         test_file = project.assets / 'my_sandbox.txt'
 
