@@ -4,9 +4,10 @@ import os
 
 # data handling related functions
 def load_config(project_name: str) -> dict:
-    ''' Loads a path data (dictionary) from a json file. '''
+    ''' Returns configuration data from JSON file for the specified project. '''
 
     # find current working directory
+    # check if path already includes pysrc 
     if 'pysrc' in os.path.dirname(os.getcwd()):
         proj_path = os.path.join(os.path.dirname(os.getcwd()), 'projects', project_name)
     else:
@@ -15,5 +16,5 @@ def load_config(project_name: str) -> dict:
 
     with open(config_file) as file:
         proj_data = json.load(file) 
-        return proj_data
+        return proj_data 
     
