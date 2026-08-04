@@ -2,10 +2,10 @@ import maya.cmds as mc
 import os
 import sys
 # import package dependent modules
-from ..maya import modules as md
-from ..maya import exporter
+from .. import modules as md
+from .. import exporter
 
-class clipsElementsUI():
+class _clipsElementsUI():
     ''' Class to handle animation clip UI elements inside the main exporter UI.'''
     def __init__(self):
         ''' Initializes the clip elements UI data and variables. '''
@@ -199,7 +199,7 @@ class mtouExporterUI():
         self.fbx = exporter.fbx()
         self.obj = exporter.obj()
         # import animation clips settings UI
-        self.clipsUI = clipsElementsUI()
+        self.clipsUI = _clipsElementsUI()
 
         self.window_ID = "EXPORTER"
         self.title = "Maya to Unreal Exporter v0.3"
