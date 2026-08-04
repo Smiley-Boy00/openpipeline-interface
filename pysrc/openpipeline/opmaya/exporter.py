@@ -1,4 +1,4 @@
-from ..maya import modules as md
+import modules as md
 from abc import ABC
 import maya.cmds as mc
 import maya.mel as mel
