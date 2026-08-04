@@ -8,6 +8,7 @@ class ProjContext():
         ''' 
         Args: system: str - the system type [unix or windows] to use for the project root path.
         '''
+        # collect project data as attributes
         self._proj_data = proj_data
         self.name = self._proj_data['project_name']
         self.version = self._proj_data['pipeline_version']
@@ -24,4 +25,4 @@ class ProjContext():
 
         root_path = self._proj_data['project_root'][system]
 
-        return Path(root_path).expanduser()
+        return Path(root_path).expanduser() # provides Home directory within path for unix systems

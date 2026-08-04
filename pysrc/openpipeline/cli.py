@@ -8,8 +8,10 @@ def main():
     parser = argparse.ArgumentParser(prog='openpipeline', 
                                      description='OpenPipeline Interface')
 
+    # create command flag to run package dependent functions
     parser.add_argument('command', nargs='?', default='info', choices=['info', 'test-assets'])
-    
+
+    # create flag to allow project selection/switching
     parser.add_argument('--project', '-p',
                         default='opi_sandbox',
                         help='Project directory name')
@@ -22,7 +24,7 @@ def main():
     if not config_data:
         parser.error('Missing Project Data.')
 
-    sandbox = ProjContext(config_data)
+    sandbox = ProjContext(config_data) # load project attributes
 
     if command_to_use == 'info':
         show_project_info(sandbox)
