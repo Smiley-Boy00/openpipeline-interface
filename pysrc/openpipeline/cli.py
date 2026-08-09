@@ -82,7 +82,7 @@ def run_project_commands(args):
 def run_maya_commands(args):
     if args.make_mod:
         mod_path = Path(args.make_mod)
-        opmaya.build_maya_mod(mod_path)
+        opmaya.integrator.build_maya_mod(mod_path)
 
     if args.find_mod:
         opmaya.integrator.find_module_paths(os=args.find_mod[0], version=args.find_mod[1])

@@ -32,13 +32,18 @@ def find_module_paths(os:str, version:str='2026'):
                    'windows': fr'C:\Program Files\Autodesk\Maya{version}\bin\mayapy.exe',
                    'linux': f'/usr/autodesk/Maya{version}/bin/mayapy'}
 
-    maya_script = '''
+    if os == 'macOS' or os == 'linux':
+        to_split = ':'
+    else:
+        to_split = ';'
+
+    maya_script = f'''
 import os
 import maya.standalone
 
 maya.standalone.initialize(name="python")
 
-for path in os.environ.get("MAYA_MODULE_PATH").split(":"):
+for path in os.environ.get("MAYA_MODULE_PATH").split("{to_split}"):
     print(path)
 
 maya.standalone.uninitialize()
