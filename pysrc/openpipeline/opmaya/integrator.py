@@ -8,7 +8,7 @@ def build_maya_mod(mod_path:Path):
 
     mod_path = str(mod_path.expanduser())
     if not os.path.exists(mod_path):
-        raise ValueError(f'Path [{mod_path}] does not exist')
+        os.makedirs(mod_path, exist_ok=True)
     
     mod_file = os.path.join(mod_path, 'OPMaya.mod')
 
