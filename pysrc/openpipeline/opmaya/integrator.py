@@ -30,7 +30,7 @@ def find_module_paths(os:str, version:str='2026'):
     
     mayapy_path = {'macOS':f'/Applications/Autodesk/maya{version}/Maya.app/Contents/bin/mayapy',
                    'windows': fr'C:\Program Files\Autodesk\Maya{version}\bin\mayapy.exe',
-                   'linux': f'/usr/autodesk/Maya{version}/bin/mayapy'}
+                   'linux': f'/usr/autodesk/maya{version}/bin/mayapy'}
 
     if os == 'macOS' or os == 'linux':
         to_split = ':'
