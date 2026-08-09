@@ -1,36 +1,27 @@
 import argparse
 import subprocess
 
+from pathlib import Path
 from .core import config
 from .core.context import ProjContext
+from . import opmaya
 
 def main():
     parser = argparse.ArgumentParser(prog='openpipeline', 
                                      description='OpenPipeline Interface')
+    subparsers = parser.add_subparsers(dest='system',
+                                      required=True)
 
-    # create command flag to run package dependent functions
-    parser.add_argument('command', nargs='?', default='info', choices=['info', 'test-assets'])
-
-    # create flag to allow project selection/switching
-    parser.add_argument('--project', '-p',
-                        default='opi_sandbox',
-                        help='Project directory name')
+    set_project_commands(subparsers)
+    set_maya_commands(subparsers)
 
     args = parser.parse_args() # retrieve chosen command
-    command_to_use = args.command
+    system_to_use = args.system
 
-    # load project config
-    config_data = config.load_config(args.project)
-    if not config_data:
-        parser.error('Missing Project Data.')
-
-    sandbox = ProjContext(config_data) # load project attributes
-
-    if command_to_use == 'info':
-        show_project_info(sandbox)
-
-    if command_to_use == 'test-assets':
-        tester_run(sandbox)
+    if system_to_use == 'project':
+        run_project_commands(args)
+    elif system_to_use == 'maya':
+        run_maya_commands(args)
 
 def show_project_info(project:ProjContext):
     print(f'OpenPipeline Interface {project.version}')
@@ -43,3 +34,55 @@ def tester_run(project:ProjContext):
 
     with test_file.open() as file:
         print(file.read())
+
+def set_project_commands(subparsers: argparse._SubParsersAction):
+    project_parser: argparse.ArgumentParser = subparsers.add_parser('project',
+                                                                    help='Parser for project related commands')
+    
+    # create command flag to run package dependent functions
+    project_parser.add_argument('command', nargs='?', default='info', choices=['info',
+                                                                        'test-assets'])
+    
+    # create flag to allow project selection/switching
+    project_parser.add_argument('--project', '-p',
+                        default='opi_sandbox',
+                        help='Project directory name')
+
+def set_maya_commands(subparsers: argparse._SubParsersAction):
+    maya_parser: argparse.ArgumentParser = subparsers.add_parser('maya', 
+                                                                 description='OpenPipeline Maya Integration',
+                                                                 help='Parser for maya OPI related commands')
+
+    maya_parser.add_argument('--make-mod', '-md',
+                             nargs='?',
+                             default=None,
+                             const='~/Developer/OpenPipeline/pysrc/openpipeline',
+                             help='Builds maya module file. Input maya module path: "/path/to/maya/modules",' \
+                             'if no path given, it will default to "./pysrc/openpipeline"')
+    maya_parser.add_argument('--find-mod', '-fm',
+                             nargs=2,
+                             default=None,)
+
+def run_project_commands(args):
+    command_to_use = args.command
+
+    # load project config
+    config_data = config.load_config(args.project)
+    if not config_data:
+        raise SystemExit('Missing Project Data.')
+
+    sandbox = ProjContext(config_data) # load project attributes
+
+    if command_to_use == 'info':
+        show_project_info(sandbox)
+
+    if command_to_use == 'test-assets':
+        tester_run(sandbox)
+
+def run_maya_commands(args):
+    if args.make_mod:
+        mod_path = Path(args.make_mod)
+        opmaya.build_maya_mod(mod_path)
+
+    if args.find_mod:
+        opmaya.integrator.find_module_paths(os=args.find_mod[0], version=args.find_mod[1])

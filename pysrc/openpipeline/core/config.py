@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import json
 import os
 
@@ -17,4 +19,3 @@ def load_config(project_name: str) -> dict:
     with open(config_file) as file:
         proj_data = json.load(file) 
         return proj_data 
-    
