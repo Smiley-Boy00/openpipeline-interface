@@ -1,1 +1,8 @@
+[project]
 extend-select = ["I"]
+version = "0.2.0"
+description = "OpenPipeline Interface"
+requires-python = ">=3.13"
+
+[project.scripts]
+openpipeline : "openpipeline.cli:main"
