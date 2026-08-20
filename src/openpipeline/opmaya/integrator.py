@@ -24,15 +24,15 @@ def find_module_paths(os:str, version:str='2026'):
     os ['macOS', 'linux', 'windows']
     version ['2026', '2027', ...]
     '''
-    os_flags = ['macOS', 'linux', 'windows']
+    os_flags = ['darwin', 'linux', 'windows']
     if os not in os_flags:
-        raise ValueError(f"Incorrect os flag: [{os}]. Use ['macOS', 'linux', 'windows']")
+        raise ValueError(f"Incorrect os flag: [{os}]. Use {os_flags}")
     
-    mayapy_path = {'macOS':f'/Applications/Autodesk/maya{version}/Maya.app/Contents/bin/mayapy',
+    mayapy_path = {'darwin':f'/Applications/Autodesk/maya{version}/Maya.app/Contents/bin/mayapy',
                    'windows': fr'C:\Program Files\Autodesk\Maya{version}\bin\mayapy.exe',
                    'linux': f'/usr/autodesk/maya{version}/bin/mayapy'}
 
-    if os == 'macOS' or os == 'linux':
+    if os == 'darwin' or os == 'linux':
         to_split = ':'
     else:
         to_split = ';'

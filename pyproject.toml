@@ -10,7 +10,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-openpipeline = "openpipeline.cli:main"
+opi = "openpipeline.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

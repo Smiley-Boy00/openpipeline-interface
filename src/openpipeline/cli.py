@@ -1,5 +1,5 @@
 import argparse
-import subprocess
+import platform
 
 from pathlib import Path
 from .core import config
@@ -60,7 +60,7 @@ def set_maya_commands(subparsers: argparse._SubParsersAction):
                              help='Builds maya module file. Input maya module path: "/path/to/maya/modules",' \
                              'if no path given, it will default to "./pysrc/openpipeline"')
     maya_parser.add_argument('--find-mod', '-fm',
-                             nargs=2,
+                             nargs=1,
                              default=None,)
 
 def run_project_commands(args):
@@ -85,4 +85,5 @@ def run_maya_commands(args):
         opmaya.integrator.build_maya_mod(mod_path)
 
     if args.find_mod:
-        opmaya.integrator.find_module_paths(os=args.find_mod[0], version=args.find_mod[1])
+        running_os=platform.system().lower()
+        opmaya.integrator.find_module_paths(os=running_os, version=args.find_mod[0])
