@@ -8,10 +8,10 @@ def load_config(project_name: str) -> dict:
 
     # find current working directory
     # check if path already includes openpipeline root path/dir
-    if 'openpipeline' in os.path.dirname(os.getcwd()):
+    if 'OpenPipeline' in os.path.dirname(os.getcwd()):
         proj_path = os.path.join(os.path.dirname(os.getcwd()), 'src', 'projects', project_name)
     else:
-        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'openpipeline', 'src', 
+        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'OpenPipeline', 'src', 
                                                                 'projects', project_name)
     config_file = os.path.join(proj_path, 'project.json')
 
