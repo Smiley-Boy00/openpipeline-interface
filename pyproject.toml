@@ -1,8 +1,19 @@
-[project]
 extend-select = ["I"]
-version = "0.2.0"
-description = "OpenPipeline Interface"
+
+[project]
+name = "OpenPipeline"
+version = "0.1.0"
 requires-python = ">=3.13"
 
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [project.scripts]
-openpipeline : "openpipeline.cli:main"
+openpipeline = "openpipeline.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

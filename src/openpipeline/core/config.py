@@ -7,11 +7,12 @@ def load_config(project_name: str) -> dict:
     ''' Returns configuration data from JSON file for the specified project. '''
 
     # find current working directory
-    # check if path already includes pysrc 
-    if 'pysrc' in os.path.dirname(os.getcwd()):
-        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'projects', project_name)
+    # check if path already includes openpipeline root path/dir
+    if 'openpipeline' in os.path.dirname(os.getcwd()):
+        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'src', 'projects', project_name)
     else:
-        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'pysrc', 'projects', project_name)
+        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'openpipeline', 'src', 
+                                                                'projects', project_name)
     config_file = os.path.join(proj_path, 'project.json')
 
     with open(config_file) as file:
