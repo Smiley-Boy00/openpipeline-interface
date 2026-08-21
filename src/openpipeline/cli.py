@@ -92,4 +92,4 @@ def run_maya_commands(args, command):
 
         if args.find_paths:
             running_os=platform.system().lower()
-            opmaya.integrator.find_module_paths(os=running_os, version=args.find_mod[0])
+            opmaya.integrator.find_module_paths(os=running_os, version=args.find_paths[0])
