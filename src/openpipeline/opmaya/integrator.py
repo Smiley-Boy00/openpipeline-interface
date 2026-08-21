@@ -21,7 +21,7 @@ PYTHONPATH +:= pysrc""")
 
 def find_module_paths(os:str, version:str='2026'):
     '''Args: 
-    os ['macOS', 'linux', 'windows']
+    os ['darwin', 'linux', 'windows']
     version ['2026', '2027', ...]
     '''
     os_flags = ['darwin', 'linux', 'windows']

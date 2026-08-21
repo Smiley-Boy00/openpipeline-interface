@@ -21,7 +21,7 @@ def main():
     if system_to_use == 'project':
         run_project_commands(args)
     elif system_to_use == 'maya':
-        run_maya_commands(args)
+        run_maya_commands(args, args.maya_command)
 
 def show_project_info(project:ProjContext):
     print(f'OpenPipeline Interface {project.version}')
@@ -53,13 +53,18 @@ def set_maya_commands(subparsers: argparse._SubParsersAction):
                                                                  description='OpenPipeline Maya Integration',
                                                                  help='Parser for maya OPI related commands')
 
-    maya_parser.add_argument('--make-mod', '-md',
+    maya_commands = maya_parser.add_subparsers(dest='maya_command',
+                                               required=True)
+
+    mod_parser = maya_commands.add_parser('mod')
+    
+    mod_parser.add_argument('--make-mod', '-m',
                              nargs='?',
                              default=None,
-                             const='~/Developer/OpenPipeline/pysrc/openpipeline',
-                             help='Builds maya module file. Input maya module path: "/path/to/maya/modules",' \
-                             'if no path given, it will default to "./pysrc/openpipeline"')
-    maya_parser.add_argument('--find-mod', '-fm',
+                             const='./src/openpipeline',
+                             help='Builds maya module file. Input maya module path: "/path/to/maya/modules", ' \
+                             'if no path given, it will default to "./src/openpipeline"')
+    mod_parser.add_argument('--find-paths', '-f',
                              nargs=1,
                              default=None,)
 
@@ -79,11 +84,12 @@ def run_project_commands(args):
     if command_to_use == 'test-assets':
         tester_run(sandbox)
 
-def run_maya_commands(args):
-    if args.make_mod:
-        mod_path = Path(args.make_mod)
-        opmaya.integrator.build_maya_mod(mod_path)
+def run_maya_commands(args, command):
+    if command == 'mod':
+        if args.make_mod:
+            mod_path = Path(args.make_mod)
+            opmaya.integrator.build_maya_mod(mod_path)
 
-    if args.find_mod:
-        running_os=platform.system().lower()
-        opmaya.integrator.find_module_paths(os=running_os, version=args.find_mod[0])
+        if args.find_paths:
+            running_os=platform.system().lower()
+            opmaya.integrator.find_module_paths(os=running_os, version=args.find_mod[0])
