@@ -4,7 +4,7 @@ import subprocess
 import os
 
 def build_maya_mod(mod_path:Path):
-    op_path = os.path.dirname((os.getcwd()))
+    op_path = os.getcwd()
 
     mod_path = str(mod_path.expanduser())
     if not os.path.exists(mod_path):
@@ -17,7 +17,7 @@ def build_maya_mod(mod_path:Path):
 
     with open(mod_file, 'w') as f:
         f.write(f"""+ OpenPipeline 0.1.0 {op_path}
-PYTHONPATH +:= pysrc""")
+PYTHONPATH +:= src""")
 
 def find_module_paths(os:str, version:str='2026'):
     '''Args: 
