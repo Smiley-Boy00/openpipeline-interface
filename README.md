@@ -1,26 +1,32 @@
 # 📦 OpenPipeline Interface
 
-(add your badges here)
+[![Python](https://img.shields.io/badge/Python-3.13%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Maya](https://img.shields.io/badge/Autodesk_Maya-Integration-37A5CC?logo=autodesk&logoColor=white)](https://www.autodesk.com/products/maya/)
+[![Unreal Engine](https://img.shields.io/badge/Unreal_Engine-Integration-0E1128?logo=unrealengine&logoColor=white)](https://www.unrealengine.com/)
+[![OpenUSD](https://img.shields.io/badge/OpenUSD-_Integration-4B8BBE)](https://openusd.org/)
+[![Status](https://img.shields.io/badge/Status-Active_Development-orange)]()
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)]()
 
-> *Your documentation is a direct reflection of your software, so hold it to the same standards.*
+> *The Python-based development interface for building and connecting DCC, pipeline, and production tools across Maya, Unreal Engine, OpenUSD, and other creative applications.*
 
 
 ## 🌟 Highlights
 
-- Some functionality made easy!
-- This problem handled
-- etc.
+- Modular architecture for DCC and pipeline integrations.
+- Cross-application tooling for Maya, Unreal Engine, and OpenUSD.
+- Adaptable integration for additional software, APIs, and DCC applications.
+- CLI-driven project and environment management.
+- Reusable tools, packages and modules.
+- Practical pipeline development patterns for solo and small-team workflows.
 
 
 ## ℹ️ Overview
 
-A development interface for pipeline intergration, allowing clean interaction with software and APIs using structured scripts & commands.</br>
-This is a sandbox to implement your own development/production environment for code execution.
+A development interface for pipeline integration, designed to connect software, DCCs, and APIs through structured scripts and commands. </br>
+OPI provides a sandbox for building, testing, and adapting custom development and production workflows.
 
 
 ## 🚀 Usage Examples
-
-*Show off what your software looks like in action! Try to limit it to one-liners if possible and don't delve into API specifics.*
 
 *Use commands for maya to interact with the interface scripts.
 E.g. automatically create a maya .mod file:*
