@@ -4,6 +4,13 @@ import subprocess
 import os
 
 def build_maya_mod(mod_path:Path):
+    '''Creates a .mod file containing the package path information. 
+    
+    Args
+    ----------
+    mod_path : Path
+        Directory path where the .mod file will be generated.
+    '''
     op_path = os.getcwd()
 
     mod_path = str(mod_path.expanduser())
@@ -20,14 +27,20 @@ def build_maya_mod(mod_path:Path):
 PYTHONPATH +:= src""")
 
 def find_module_paths(os:str, version:str='2026'):
-    '''Args: 
-    os ['darwin', 'linux', 'windows']
-    version ['2026', '2027', ...]
+    '''Prints the available maya module directories based on operation system. 
+
+    Args
+    ----------
+    os : str
+        Must only be the currently running system: 'darwin', 'linux' or 'windows' 
+    version : str
+        Finds the directories for the installed maya version.
     '''
     os_flags = ['darwin', 'linux', 'windows']
     if os not in os_flags:
         raise ValueError(f"Incorrect os flag: [{os}]. Use {os_flags}")
-    
+
+    # store fixed mayapy executable for each os
     mayapy_path = {'darwin':f'/Applications/Autodesk/maya{version}/Maya.app/Contents/bin/mayapy',
                    'windows': fr'C:\Program Files\Autodesk\Maya{version}\bin\mayapy.exe',
                    'linux': f'/usr/autodesk/maya{version}/bin/mayapy'}
@@ -37,6 +50,7 @@ def find_module_paths(os:str, version:str='2026'):
     else:
         to_split = ';'
 
+    # get maya modules with headless maya environment  
     maya_script = f'''
 import os
 import maya.standalone
@@ -55,4 +69,4 @@ maya.standalone.uninitialize()
         print(result.stderr)
         return
 
-    print(result.stdout.strip())
+    print(result.stdout.strip()) # .strip() provides output without blank newlines
