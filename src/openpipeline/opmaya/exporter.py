@@ -6,7 +6,7 @@ import sys
 import os
 
 class exporterType(ABC):
-    ''' Base Class for building exporter type interfaces and its setting dependencies. '''
+    ''' Base Class for exporter type interfaces and its setting dependencies. '''
     def __init__(self):
         ''' Initialize methods and private dependencies. '''
         self._export_path = None
