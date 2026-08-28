@@ -53,8 +53,8 @@ def set_project_commands(subparsers: argparse._SubParsersAction):
                                                                     help='Parser for project related commands')
     
     # create command flag to run package dependent functions
-    project_parser.add_argument('command', nargs='?', default='info', choices=['info',
-                                                                        'test-assets'])
+    project_parser.add_argument('command', nargs='?', default='info', choices=['info', 
+                                                                               'test-assets'])
     
     # create flag to allow project selection/switching
     project_parser.add_argument('--project', '-p',
@@ -94,7 +94,7 @@ def show_project_info(project:ProjContext):
 
 def tester_run(project:ProjContext):
     if project.assets:
-        test_file = project.assets / 'my_sandbox.txt'
+        test_file = project.assets / 'prim_hierarchy.usda'
 
     with test_file.open() as file:
         print(file.read())
