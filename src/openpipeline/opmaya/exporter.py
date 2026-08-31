@@ -1,7 +1,7 @@
-from . import modules as md
+from . import data_utils as dutil
+from .library import maya_utils as md
 from abc import ABC
 import maya.cmds as mc
-import maya.mel as mel
 import sys
 import os
 
@@ -49,7 +49,7 @@ class exporterType(ABC):
     def export(self):
         ''' Perform the type dependant export. '''
         if not self._export_path:
-            self._export_path = md.get_documents_folder()
+            self._export_path = dutil.get_documents_folder()
 
 class fbx(exporterType):
     ''' 
