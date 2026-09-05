@@ -26,7 +26,7 @@ def build_maya_mod(mod_path:Path):
         f.write(f"""+ OpenPipeline 0.1.0 {op_path}
 PYTHONPATH +:= src""")
 
-def find_module_paths(os:str, version:str='2026'):
+def find_paths(os:str, environ:str, version:str='2026'):
     '''Prints the available maya module directories based on operation system. 
 
     Args
@@ -57,7 +57,7 @@ import maya.standalone
 
 maya.standalone.initialize(name="python")
 
-for path in os.environ.get("MAYA_MODULE_PATH").split("{to_split}"):
+for path in os.environ.get("{environ}").split("{to_split}"):
     print(path)
 
 maya.standalone.uninitialize()

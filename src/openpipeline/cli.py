@@ -85,7 +85,8 @@ def run_maya_commands(args, command):
 
         if args.find_paths:
             running_os=platform.system().lower()
-            opmaya.integrator.find_module_paths(os=running_os, version=args.find_paths[0])
+            opmaya.integrator.find_paths(os=running_os, environ='MAYA_MODULE_PATH',
+                                         version=args.find_paths[0])
 
 def show_project_info(project:ProjContext):
     print(f'OpenPipeline Interface {project.version}')
