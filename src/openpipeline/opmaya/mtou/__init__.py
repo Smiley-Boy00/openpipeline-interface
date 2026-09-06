@@ -1,1 +1,1 @@
-from .dock_wrapper import load
+from .dock_wrapper import load, unload

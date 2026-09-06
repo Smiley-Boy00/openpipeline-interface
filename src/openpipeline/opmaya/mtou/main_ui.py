@@ -2,7 +2,8 @@ import maya.cmds as mc
 import os
 import sys
 # import package dependent modules
-from .. import modules as md
+from ..library import maya_utils as md
+from .. import data_utils as dutil
 from .. import exporter
 
 class _clipsElementsUI():
@@ -193,7 +194,7 @@ class mtouExporterUI():
         print('Running MtoU Exporter Version: 0.3.0 ')
 
         # locate the user's home\Documents path
-        self.folder_path = os.path.join(md.get_documents_folder(), 'UE', 'Data')
+        self.folder_path = os.path.join(dutil.get_documents_folder(), 'UE', 'Data')
         
         # import exporter classes
         self.fbx = exporter.fbx()
@@ -664,12 +665,12 @@ class mtouExporterUI():
             mc.warning(f"Data ID: '{dataID}' not available. Available IDs: {available_IDs}")
         
         # verify UE project data exists
-        ue_data_exists = md.path_exists(os.path.join(self.folder_path, 'ue_data.json'))
+        ue_data_exists = dutil.path_exists(os.path.join(self.folder_path, 'ue_data.json'))
         # return None if no UE project data has been loaded, else return requested data
         if not ue_data_exists:
             return None
         else:
-            ue_dict = md.load_data(self.folder_path, 'ue_data.json')
+            ue_dict = dutil.load_data(self.folder_path, 'ue_data.json')
             if dataID=='path':
                 ue_data = ue_dict.get("Current Project")
             elif dataID=='skeletons':
@@ -801,10 +802,10 @@ class mtouExporterUI():
         batch_export=self.checkerSettings.get('batch_export')
 
         # check if import data has been generated prior
-        import_data_exists = md.path_exists(os.path.join(self.folder_path, 'importSettings.json'))
+        import_data_exists = dutil.path_exists(os.path.join(self.folder_path, 'importSettings.json'))
         if import_data_exists:
             # load and store import settings data set
-            import_data = md.load_data(self.folder_path, 'importSettings.json')
+            import_data = dutil.load_data(self.folder_path, 'importSettings.json')
         else:
             # create empty import settings data set
             import_data = {}
@@ -949,7 +950,7 @@ class mtouExporterUI():
                         self.fbx.place_sel_to_original_pos(mesh)
 
         # save the user import settings for unreal importer
-        md.save_data(self.folder_path, 'importSettings.json', import_data)
+        dutil.save_data(self.folder_path, 'importSettings.json', import_data)
 
         # restore initial playback frame range
         mc.playbackOptions(edit=True, min=init_start_frame, max=init_end_frame)
@@ -1014,11 +1015,11 @@ class mtouExporterUI():
             obj_normals=1
 
         # check if import data has been generated prior
-        import_data_exists = md.path_exists(os.path.join(self.folder_path, 
+        import_data_exists = dutil.path_exists(os.path.join(self.folder_path, 
                                                               'importSettings.json'))
         if import_data_exists:
             # load and store import settings data set
-            import_data = md.load_data(self.folder_path, 'importSettings.json')
+            import_data = dutil.load_data(self.folder_path, 'importSettings.json')
         else:
             # create empty import settings data set
             import_data = {}
@@ -1114,7 +1115,7 @@ class mtouExporterUI():
                     self.obj.place_sel_to_original_pos(mesh)
 
         # save the user import settings for unreal importer
-        md.save_data(self.folder_path, 'importSettings.json', import_data)
+        dutil.save_data(self.folder_path, 'importSettings.json', import_data)
 
         mc.select(cl=True)
 
