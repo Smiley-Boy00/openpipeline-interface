@@ -5,15 +5,9 @@ from . import mtou
 def initializer():
     print('Initializing OPI plugin.')
     
-    if mc.menu('UExporterMenu', exists = True):
-        mc.deleteUI('UExporterMenu', menu = True)
-
-    main_menu = mc.menu('UExporterMenu', label = 'Exporter Tools', parent = 'MayaWindow', tearOff = True)
-
-    mc.menuItem(label='MayaToUnreal', command = mtou.load, parent = main_menu)
+    mtou.load()
 
 def uninitializer():
     print('Deactivating OPI plugin.')
 
-    if mc.menu('UExporterMenu', exists = True):
-        mc.deleteUI('UExporterMenu', menu = True)
+    mtou.unload()
