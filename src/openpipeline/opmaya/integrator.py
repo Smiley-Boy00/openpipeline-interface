@@ -23,8 +23,35 @@ def build_maya_mod(mod_path:Path):
         f = open(mod_file, 'x')
 
     with open(mod_file, 'w') as f:
-        f.write(f"""+ OpenPipeline 0.1.0 {op_path}
+        f.write(f"""+ OpenPipeline 0.1.0 {os.getcwd()}
 PYTHONPATH +:= src""")
+
+def build_op_plugin(plugin_path:Path) :
+    plugin_path = str(plugin_path.expanduser())
+
+    if not os.path.exists(plugin_path):
+        os.makedirs(plugin_path, exist_ok=True)
+
+    plugin_file = os.path.join(plugin_path, 'OPMaya.py')
+
+    script = f'''
+import maya.api.OpenMaya as om
+from openpipeline.opmaya import startup
+
+# connect to the OpenMaya API 2.0
+maya_useNewAPI = True
+
+def initializePlugin(plugin):
+    pluginFn = om.MFnPlugin(plugin, 'OPI', '0.1.0')
+    startup.initializer()
+
+def uninitializePlugin(plugin):
+    pluginFn = om.MFnPlugin(plugin)
+    startup.uninitializer()
+    '''
+
+    with open(plugin_file, 'w') as f:
+        f.write(script)
 
 def find_paths(os:str, environ:str, version:str='2026'):
     '''Prints the available maya module directories based on operation system. 
