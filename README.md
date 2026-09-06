@@ -95,11 +95,17 @@ python -m pip install -r requirements.txt
 python -m pip install -e .
 ```
 
-*You may be inclined to add development instructions here, don't.*
 
+## 💭 Feedback and Contact
 
-## 💭 Feedback and Contributing
+If you encounter a problem or have an idea for improvement:  
+1. Open an **[Issue](https://github.com/Smiley-Boy00/creativeSK/issues)** describing your problem, suggestion, or request.  
+2. Include as much detail as possible: logs, screenshots, reproduction steps.  
 
-Add a link to the Discussions tab in your repo and invite users to open issues for bugs/feature requests.
+💡 Your feedback will influence future releases!
 
-This is also a great place to invite others to contribute in any ways that make sense for your project. Point people to your DEVELOPMENT and/or CONTRIBUTING guides if you have them.
+Want to connect, ask a question, or collaborate? Here's how to reach me:  
+
+- 📧 **Email:** davidmartinez3dtech@gmail.com  
+- 💬 **Discord:** `smiley_boy`  
+- 🌐 **Portfolio / Website:** [Artstation](https://www.artstation.com/davidmartinez3dtech)  
