@@ -43,9 +43,9 @@ def set_maya_commands(subparsers: argparse._SubParsersAction):
                              nargs='?',
                              default=None,
                              const='./src/openpipeline',
-                             metavar='MOD_PATH',
-                             help='Builds maya module file from working directory. Input maya module path: "/path/to/maya/plug-ins". ' \
-                            'Use --find-paths command to find a module path to use.')
+                             metavar='PLUGIN_PATH',
+                             help='Builds plugin file. Input maya plugin path: "/path/to/maya/plug-ins". ' \
+                            'Use --find-paths command to find a plugin path to use.')
 
     mod_parser = maya_commands.add_parser('mod')    
     mod_parser.add_argument('--find-paths', '-f',
@@ -101,7 +101,7 @@ def run_maya_commands(args, command):
         if args.find_paths:
             running_os=platform.system().lower()
             opmaya.integrator.find_paths(os=running_os, environ='MAYA_PLUG_IN_PATH',
-                                            version=args.find_paths[0])
+                                         version=args.find_paths[0])
 
     if command == 'mod':
         if args.make_mod:
