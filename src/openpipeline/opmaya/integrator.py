@@ -1,7 +1,7 @@
+import os
+import subprocess
 from pathlib import Path
 
-import subprocess
-import os
 
 def build_maya_mod(mod_path:Path):
     '''Creates a .mod file containing the package path information. 
@@ -34,7 +34,7 @@ def build_op_plugin(plugin_path:Path) :
 
     plugin_file = os.path.join(plugin_path, 'OPMaya.py')
 
-    script = f'''
+    script = '''
 import maya.api.OpenMaya as om
 from openpipeline.opmaya import startup
 

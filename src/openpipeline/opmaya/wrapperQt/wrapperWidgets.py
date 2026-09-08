@@ -1,5 +1,6 @@
 from PySide6 import QtCore, QtWidgets
 
+
 class wrapWid():
     ''' A wrapper class for commonly used Qt Widgets, gets the widget if it already exists. '''
     def __init__(self, parentUI:QtWidgets.QWidget):

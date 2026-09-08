@@ -1,10 +1,11 @@
 import argparse
 import platform
-
 from pathlib import Path
+
+from . import opmaya
 from .core import config
 from .core.context import ProjContext
-from . import opmaya
+
 
 def main():
     opi_parser = argparse.ArgumentParser(prog='openpipeline', 
@@ -32,21 +33,6 @@ def set_maya_commands(subparsers: argparse._SubParsersAction):
     maya_commands = maya_parser.add_subparsers(dest='maya_command',
                                                required=True)
 
-    mod_parser = maya_commands.add_parser('plugin')    
-    mod_parser.add_argument('--find-paths', '-f',
-                             nargs=1,
-                             default=None,
-                             metavar='MAYA_VERSION',
-                             help='Locates every plugin path/directory from the provided maya version. ' \
-                                'Must provide a maya version, e.g 2026')
-    mod_parser.add_argument('--make-plugin', '-m',
-                             nargs='?',
-                             default=None,
-                             const='./src/openpipeline',
-                             metavar='PLUGIN_PATH',
-                             help='Builds plugin file. Input maya plugin path: "/path/to/maya/plug-ins". ' \
-                            'Use --find-paths command to find a plugin path to use.')
-
     mod_parser = maya_commands.add_parser('mod')    
     mod_parser.add_argument('--find-paths', '-f',
                              nargs=1,
@@ -62,6 +48,21 @@ def set_maya_commands(subparsers: argparse._SubParsersAction):
                              help='Builds maya module file from working directory. Input maya module path: "/path/to/maya/modules". ' \
                              'If no path is given, it will default to "./src/openpipeline". ' \
                             'Use --find-paths command to find a module path to use.')
+    
+    plugin_parser = maya_commands.add_parser('plugin')    
+    plugin_parser.add_argument('--find-paths', '-f',
+                             nargs=1,
+                             default=None,
+                             metavar='MAYA_VERSION',
+                             help='Locates every plugin path/directory from the provided maya version. ' \
+                                'Must provide a maya version, e.g 2026')
+    plugin_parser.add_argument('--make-plugin', '-m',
+                             nargs='?',
+                             default=None,
+                             const='./src/openpipeline',
+                             metavar='PLUGIN_PATH',
+                             help='Builds plugin file. Input maya plugin path: "/path/to/maya/plug-ins". ' \
+                            'Use --find-paths command to find a plugin path to use.')
 
 def set_project_commands(subparsers: argparse._SubParsersAction):
     project_parser: argparse.ArgumentParser = subparsers.add_parser('project',
@@ -80,7 +81,7 @@ def run_project_commands(args):
     command_to_use = args.command
 
     # load data configuration (JSON) from chosen project
-    config_data = config.load_config(args.project)
+    config_data = config.load_config(args.project, set_root=True) # change root directory at runtime
     if not config_data:
         raise SystemExit('Missing Project Data.')
 
@@ -116,7 +117,7 @@ def run_maya_commands(args, command):
 def show_project_info(project:ProjContext):
     print(f'OpenPipeline Interface {project.version}')
     print(f'Project: {project.name}')
-    print(f'Root: {project.root}')
+    print(f'Root: {project.get_project_root()}')
 
 def tester_run(project:ProjContext):
     if project.assets:

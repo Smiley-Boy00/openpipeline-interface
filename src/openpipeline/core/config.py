@@ -1,20 +1,23 @@
-import json
 import os
+from pathlib import Path
+
+from . import data_utils as dutil
 
 
-# data handling related functions
-def load_config(project_name: str) -> dict:
+def load_config(project_name: str, set_root=False) -> dict:
     ''' Returns configuration data from JSON file for the specified project. '''
 
     # find current working directory
-    # check if path already includes openpipeline root path/dir
-    if 'OpenPipeline' in os.path.dirname(os.getcwd()):
-        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'src', 'projects', project_name)
-    else:
-        proj_path = os.path.join(os.path.dirname(os.getcwd()), 'OpenPipeline', 'src', 
-                                                                'projects', project_name)
-    config_file = os.path.join(proj_path, 'project.json')
+    opi_path = os.path.dirname(os.getcwd())
+    opi_path = Path(os.path.dirname(__file__)).parents[1]
 
-    with open(config_file) as file:
-        proj_data = json.load(file) 
-        return proj_data 
+    proj_path = Path(opi_path, 'projects', project_name)
+
+    proj_data = dutil.load_data(proj_path, 'project.json')
+
+    if set_root:
+        proj_data["project_root"] = str(proj_path).replace('\\', '/')
+        dutil.save_data(proj_path, 'project.json', proj_data)
+
+    return proj_data 
+

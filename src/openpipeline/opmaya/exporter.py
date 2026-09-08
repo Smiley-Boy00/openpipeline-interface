@@ -1,9 +1,12 @@
-from . import data_utils as dutil
-from .library import maya_utils as md
-from abc import ABC
-import maya.cmds as mc
-import sys
 import os
+import sys
+from abc import ABC
+
+import maya.cmds as mc
+
+from ..core import data_utils as dutil
+from .library import maya_utils as md
+
 
 class exporterType(ABC):
     ''' Base Class for exporter type interfaces and its setting dependencies. '''

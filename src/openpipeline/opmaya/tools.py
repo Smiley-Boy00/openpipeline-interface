@@ -1,13 +1,14 @@
 # module for setting up maya tool packages
 import importlib
 
-TOOL_REGISTRY = {'mtou': 'openpipeline.opmaya.mtou'}
+from ..core.context import ProjContext
 
-def load(tool:str):
-    maya_tool = importlib.import_module(TOOL_REGISTRY[tool])
+
+def load(registry:ProjContext, tool:str):
+    maya_tool = importlib.import_module(registry.opmaya_reg[tool])
     importlib.reload(maya_tool)
     maya_tool.load()
 
-def unload(tool:str):
-    maya_tool = importlib.import_module(TOOL_REGISTRY[tool])
+def unload(registry:ProjContext, tool:str):
+    maya_tool = importlib.import_module(registry.opmaya_reg[tool])
     maya_tool.unload()

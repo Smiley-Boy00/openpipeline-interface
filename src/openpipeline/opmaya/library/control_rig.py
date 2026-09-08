@@ -1,8 +1,10 @@
-from . import shapes as shp
-from .. import data_utils as dutil
+import os
+
 import maya.api.OpenMaya as om
 import maya.cmds as cmds
-import os
+
+from ...core import data_utils as dutil
+from . import shapes as shp
 
 # maya modules dependent functions
 

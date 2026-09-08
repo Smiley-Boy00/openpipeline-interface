@@ -1,14 +1,14 @@
 {
-    "project_name": "OPI Sandbox",
-    "pipeline_version": "0.2.0",
-    "project_root": {
-        "unix": "~/Developer/OpenPipeline/src/projects/opi_sandbox",
-        "windows": "E:/Developer/OpenPipeline/pysrc/projects/opi_sandbox"},
-
     "directories": {
         "assets": "assets",
-        "export": "export",
-        "publish": "publish",
-        "logs" : "logs"
-    } 
+        "export": "export"
+    },
+    "pipeline_version": "0.2.0",
+    "project_name": "OPI Sandbox",
+    "project_root": "E:/Developer/OpenPipeline/src/projects/opi_sandbox",
+    "tools": {
+        "opmaya": {
+            "mtou": "openpipeline.opmaya.mtou"
+        }
+    }
 }

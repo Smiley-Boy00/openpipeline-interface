@@ -1,10 +1,14 @@
-import maya.cmds as mc
 import os
 import sys
+
+import maya.cmds as mc
+
+from ...core import data_utils as dutil
+from .. import exporter
+
 # import package dependent modules
 from ..library import maya_utils as md
-from .. import data_utils as dutil
-from .. import exporter
+
 
 class _clipsElementsUI():
     ''' Class to handle animation clip UI elements inside the main exporter UI.'''
