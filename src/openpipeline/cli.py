@@ -81,7 +81,7 @@ def run_project_commands(args):
     command_to_use = args.command
 
     # load data configuration (JSON) from chosen project
-    config_data = config.load_config(args.project, set_root=True) # change root directory at runtime
+    config_data = config.load_config(args.project) # change root directory at runtime
     if not config_data:
         raise SystemExit('Missing Project Data.')
 

@@ -5,7 +5,7 @@
     },
     "pipeline_version": "0.2.0",
     "project_name": "OPI Sandbox",
-    "project_root": "E:/Developer/OpenPipeline/src/projects/opi_sandbox",
+    "project_root": "./src/projects/opi_sandbox",
     "tools": {
         "opmaya": {
             "mtou": "openpipeline.opmaya.mtou"

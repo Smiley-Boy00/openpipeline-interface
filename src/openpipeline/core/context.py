@@ -19,6 +19,8 @@ class ProjContext:
         self.opmaya_reg = self.__proj_data['tools']['opmaya']
 
     def get_project_root(self) -> Path:
-        root_path = self.__proj_data['project_root']
+        proj_path = self.__proj_data['project_root']
+        parent_path = Path(os.path.dirname(__file__)).parents[2]
+        root_path = parent_path / proj_path
 
-        return Path(root_path).expanduser() # provides Home directory within path for unix systems
+        return root_path # provides Home directory within path for unix systems

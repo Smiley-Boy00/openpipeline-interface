@@ -1,5 +1,6 @@
 import json
 import os
+import platform
 from pathlib import Path
 
 
@@ -31,6 +32,13 @@ def load_data(path:str | Path, file_name:str) -> dict:
     return stored_data
 
 # directory related functions
+
+def get_os() -> str:
+    system = platform.system().lower()
+    if system in ('darwin', 'linux'):
+        system = 'unix'
+    return system
+
 def get_documents_folder() -> str:
     ''' Finds the documents path inside the user's home directory. '''
     documents_path = os.path.join(str(Path.home()), 'Documents')
