@@ -4,9 +4,9 @@ from ..core.context import ProjContext
 from . import tools
 
 
-def get_project():
-    sandbox = ProjContext(config.load_config('opi_sandbox'))
-    return sandbox
+def get_project(name:str='opi_sandbox'):
+    opi_project = ProjContext(config.load_config(name))
+    return opi_project
 
 def initializer():
     print('Initializing OPI plugin.')
