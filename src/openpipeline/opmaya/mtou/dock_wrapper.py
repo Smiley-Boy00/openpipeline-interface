@@ -1,6 +1,8 @@
-from . import main_ui
-import maya.cmds as mc
 import importlib
+
+import maya.cmds as mc
+
+from . import main_ui
 
 ## insert code to make mtou ui dockable inside maya
 

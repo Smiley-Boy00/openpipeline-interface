@@ -1,5 +1,7 @@
-import maya.cmds as mc
 import os
+
+import maya.cmds as mc
+
 
 def take_screenshot(selectedObj, path, imageName='.jpg', activeCamera=False, currentBG=False):
     '''Does a single frame playblast render with a default camera.

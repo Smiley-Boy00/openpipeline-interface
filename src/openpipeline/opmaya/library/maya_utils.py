@@ -1,6 +1,7 @@
 import maya.api.OpenMaya as om
 import maya.cmds as mc
 
+
 # maya modules dependent functions
 def move_to_origin(mesh) -> None:
     ''' Moves the provided mesh to the world origin (0,0,0) using its rotate pivot. '''
