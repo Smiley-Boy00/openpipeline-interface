@@ -187,13 +187,13 @@ class _clipsElementsUI():
         else:
             return self.clips_created
 
-class mtouExporterUI():
+class mtouExporterUI:
     '''
     Class to handle UI display for exporter types.
     Executes modules once a project path data is instantiated.
     Generates import data after execution.
     '''
-    def __init__(self):
+    def __init__(self, window_ID="mtouExporter"):
         ''' Initializes the tool's UI layout, elements and class dependencies. '''
         print('Running MtoU Exporter Version: 0.3.0 ')
 
@@ -206,7 +206,7 @@ class mtouExporterUI():
         # import animation clips settings UI
         self.clipsUI = _clipsElementsUI()
 
-        self.window_ID = "EXPORTER"
+        self.window_ID = window_ID
         self.title = "Maya to Unreal Exporter v0.3"
         self.size = (600,650)
         

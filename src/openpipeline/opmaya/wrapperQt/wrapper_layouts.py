@@ -1,7 +1,7 @@
 from PySide6 import QtCore, QtWidgets
 
 
-class wrapLay():
+class wrapLay:
     ''' A wrapper class for commonly used Qt Layouts, gets the layout if it already exists. '''
     def __init__(self, parentUI:QtWidgets.QWidget):
         ''' Initializes the QWidget methods, parented to the called UI. '''
