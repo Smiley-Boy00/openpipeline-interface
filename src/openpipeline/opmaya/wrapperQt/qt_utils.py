@@ -8,7 +8,7 @@ def get_main_maya_window() -> QtWidgets.QWidget:
     maya_window: QtWidgets.QWidget = wrapInstance(int(maya_ptr), QtWidgets.QWidget)
     return maya_window
 
-def get_control_pointer(pointer_name) -> QtWidgets.QWidget:
+def get_control_pointer(pointer_name: str) -> QtWidgets.QWidget:
     pointer = omui.MQtUtil.findControl(pointer_name)
     control: QtWidgets.QWidget = wrapInstance(int(pointer), QtWidgets.QWidget)
     return control

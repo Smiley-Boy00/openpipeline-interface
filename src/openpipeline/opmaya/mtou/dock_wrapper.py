@@ -26,9 +26,11 @@ def mtouUI(*args, run=True):
             mc.workspaceControl(__WORKSPACE_NAME, edit=True, restore=True)
 
         else:
-            workspace_control=mc.workspaceControl(__WORKSPACE_NAME, label='Maya To Unreal Exporter',
-                                                dockToMainWindow=('right', False), retain=False,
-                                                uiScript=f"import {__name__}; {__name__}.build_wrapper()")
+            print(__name__)
+            mc.workspaceControl(__WORKSPACE_NAME, label='Maya To Unreal Exporter',
+                                dockToMainWindow=('right', False), retain=False,
+                                floating=True,
+                                uiScript=f"import {__name__}; {__name__}.build_wrapper()")
 
     else:
         if mc.workspaceControl(__WORKSPACE_NAME, exists=True):
