@@ -11,9 +11,8 @@ def build_maya_mod(mod_path:Path):
     mod_path : Path
         Directory path where the .mod file will be generated.
     '''
-    op_path = os.getcwd()
 
-    mod_path = str(mod_path.expanduser())
+    mod_path = mod_path.expanduser() # get full path name directory
     if not os.path.exists(mod_path):
         os.makedirs(mod_path, exist_ok=True)
     
@@ -26,9 +25,16 @@ def build_maya_mod(mod_path:Path):
         f.write(f"""+ OpenPipeline 0.1.0 {os.getcwd()}
 PYTHONPATH +:= src""")
 
-def build_op_plugin(plugin_path:Path) :
-    plugin_path = str(plugin_path.expanduser())
+def build_op_plugin(plugin_path:Path):
+    '''Creates a .py bootstrap plugin file containing the required loading and unloading modules. 
+        
+    Args
+    ----------
+    plugin_path : Path
+        Directory path where the file will be generated.
+    '''
 
+    plugin_path = plugin_path.expanduser()
     if not os.path.exists(plugin_path):
         os.makedirs(plugin_path, exist_ok=True)
 
@@ -54,14 +60,16 @@ def uninitializePlugin(plugin):
         f.write(script)
 
 def find_paths(os:str, environ:str, version:str='2026'):
-    '''Prints the available maya module directories based on operation system. 
+    '''Prints the maya environment paths based on the operation system. 
 
     Args
     ----------
     os : str
-        Must only be the currently running system: 'darwin', 'linux' or 'windows' 
+        Name of the currently running system: 'darwin', 'linux' or 'windows' 
+    environ : str
+        Maya Environment paths to look for: 'MAYA_PLUG_IN_PATH', 'MAYA_MODULE_PATH'
     version : str
-        Finds the directories for the installed maya version.
+        The installed maya version.
     '''
     os_flags = ['darwin', 'linux', 'windows']
     if os not in os_flags:
@@ -90,8 +98,8 @@ for path in os.environ.get("{environ}").split("{to_split}"):
 maya.standalone.uninitialize()
     '''
     result = subprocess.run([mayapy_path[os], '-c', maya_script],
-                            capture_output=True,
-                            text=True)
+                            capture_output=True, text=True,
+                            check=True)
     if result.returncode != 0:
         print(result.stderr)
         return
